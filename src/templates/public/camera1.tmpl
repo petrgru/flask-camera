@@ -1,0 +1,47 @@
+{% from "macros/fields.tmpl" import render_input_field, render_submit %}
+{% extends "shared/layout.tmpl" %}
+
+{% block title %}Forgotten password{% endblock %}
+
+{% block content %}
+	<div id="results">Your captured image will appear here...</div>
+
+	<h1>WebcamJS Test Page</h1>
+	<h3>Demonstrates simple 320x240 capture &amp; display</h3>
+
+	<div id="photo_button">Zmackni</div>
+	<div class="photo_info" id="photo_info">Zmackni</div>
+
+	<div id="image">Image</div>
+
+	<!-- First, include the Webcam.js JavaScript Library -->
+	<script type="text/javascript" src="/static/js/camera.js"></script>
+
+	<!-- Configure a few settings and attach camera -->
+
+
+	<!-- A button for taking snaps -->
+	<form>
+		<input type=button value="photo_button">
+	</form>
+<script language="JavaScript">
+  //var $info = $('#photo_info');
+  var $info = document.getElementById("photo_info");
+  var showInfo = function(s){// true ... ok, number ... percentage, string ... error
+        $info.html((s.response)?s.response:(isNaN(s))?s:s + '%');
+  };
+  var showPhoto = function(canvas){$('#image').attr('src', canvas.toDataUrl());};
+
+  $('#photo_button').click(function(){
+    camera({
+      photo_max_size:     800,       //resize to 800 pixel (height or width)
+      photo_jpeg_quality: 0.7,       //jpeg-quality from 0 to 1.0
+      xhr:                '/foto',   //url of where the photo shall be uploaded
+      callback_xhr:       showInfo,  //show some info on upload progress
+      callback_canvas:   showPhoto  //display the photo in an img-element
+    });
+  });
+	</script>
+	<!-- Code to handle taking the snapshot and displaying it locally -->
+
+{% endblock %}
