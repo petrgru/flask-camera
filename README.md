@@ -1,3 +1,7 @@
+## Source
+https://github.com/zevero/html5-camera
+
+
 ## [Flask Skeleton][flask-skeleton]
 Flask Skeleton provides a base structure for a medium-sized Flask app. This incorporates several Flask best practices and is my default setup for whenever I create a new Flask project. This was built and tested with Python 2.
 
